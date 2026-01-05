@@ -4,11 +4,12 @@ import { updateResponse } from "../../api/updateResponse";
 import { useEffect, useState } from "react";
 import { StatusCodeOptions } from "../status-code-options/StatusCodeOptions.component";
 import { getAllResponses } from "../../api/getAllResponses";
-import { ResponseDataContainer, ResponseDataHeader, ResponseDataInput, ResponseDataInputContainer, ResponseDataNoData, ResponseDataNoDataImage, ResponseDataNoDataText, ResponseDataPanel, ResponseDataSubmitButton, ResponseDataSubmitContainer } from "./ResponseData.styles";
+import { ResponseDataContainer, ResponseDataHeader, ResponseDataInputContainer, ResponseDataPanel, ResponseDataSubmitButton, ResponseDataSubmitContainer } from "./ResponseData.styles";
 import toast from "react-hot-toast";
 import Notification from "../notification/Notification.component";
 import { LoadingOverlay } from "../loading-overlay/LoadingOverlay.component";
-import TesterZombie from "../../assets/images/TesterZombie.png";
+import { ItemDataNoData } from "../item-data/ItemDataNoData.component";
+import { JsonContent } from "../json-content/JsonContent.component";
 
 type ResponseDataProps = {
     responseItem: ResponseItem | undefined;
@@ -76,22 +77,18 @@ export function ResponseData({ responseItem, setResponses }: ResponseDataProps) 
                             currentStatusCode={updateStatusCode}
                         />
                         <ResponseDataInputContainer>
-                            <ResponseDataInput
+                            <JsonContent
                                 value={updateValue}
-                                onChange={e => setUpdateValue(e.target.value)}
-                                readOnly={false}
+                                readonly={false}
+                                updateValue={setUpdateValue}
+                                caret={true}
                             />
                         </ResponseDataInputContainer>
                         <ResponseDataSubmitContainer>
                             <ResponseDataSubmitButton onClick={handleUpdate}>Update</ResponseDataSubmitButton>
                         </ResponseDataSubmitContainer>
                     </ResponseDataContainer> :
-                    <ResponseDataNoData>
-                        <ResponseDataNoDataText>
-                            Select an Endpoint
-                        </ResponseDataNoDataText>
-                        <ResponseDataNoDataImage src={TesterZombie} />
-                    </ResponseDataNoData>
+                    <ItemDataNoData text="Select an Endpoint" />
                 }
             </ResponseDataPanel>
         </>

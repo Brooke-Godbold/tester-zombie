@@ -12,18 +12,12 @@ export const AppContainer = styled.div`
     gap: 1.2rem;
 `
 
-export const AppHeader = styled.h1`
+export const AppPageContainer = styled.div`
     width: 100%;
-    flex: 1;
+    flex: 5;
 
-    text-align: center;
+    display: flex;
+    flex-direction: column;
 
-    padding-top: 1.2rem;
-
-    font-size: 8.4rem;
-    letter-spacing: 5px;
-
-    border-style: dashed;
-    border-radius: var(--border-radius-sm);
-    border-color: var(--color-brand-400);
+    min-height: 0
 `

@@ -24,6 +24,10 @@ export const ResponseDataInputContainer = styled.div`
     width: 100%;
 
     padding: 1.2rem;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 `;
 
 export const ResponseDataInput = styled.textarea`
@@ -49,27 +53,31 @@ export const ResponseDataSubmitContainer = styled.div`
     width: 100%;
 
     display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 2.4rem;
 `
 
 export const ResponseDataSubmitButton = styled.button`
-    flex: 1;
+    width: 75%;
+
+    padding: 1.2rem 2.4rem;
 
     font-family: "HauntedHillRegular", sans-serif;
     font-size: 3.6rem;
     letter-spacing: 3px;
 
-    background-color: var(--color-red-800);
-    color: var(--color-red-100);
+    background-color: var(--color-brand-800);
+    color: var(--color-brand-300);
 
     border-radius: var(--border-radius-sm);
-    border-color: var(--color-red-100);
-    border-style: solid;
+    border-color: var(--color-brand-400);
+    border-style: dashed;
 
     &:hover {
-        background-color: var(--color-red-100);
-        color: var(--color-red-800);
-        border-color: var(--color-red-800);
+        background-color: var(--color-red-800);
+        border-color: var(--color-red-100);
+        color: var(--color-red-100);
     }
 `
 
@@ -82,34 +90,4 @@ export const ResponseDataHeader = styled.h2`
     padding-top: 1.2rem;
 
     font-size: 4.8rem;
-`
-
-export const ResponseDataNoData = styled.div`
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-    height: 100%;
-
-    padding: 5.4rem;
-`
-
-export const ResponseDataNoDataText = styled.p`
-    flex: 1;
-
-    font-size: 4.8rem;
-
-    text-align: center;
-    padding-top: 12rem;
-`
-
-export const ResponseDataNoDataImage = styled.img`
-    flex: 4;
-    width: 25%;
-    object-fit: contain;
-    aspect-ratio: 1/1;
 `

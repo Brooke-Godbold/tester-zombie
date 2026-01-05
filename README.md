@@ -43,6 +43,7 @@ Responses must be contained within the Response folder in the Server. Each endpo
 NAME.config.json
 {
   "endpoint": "/endpoint",
+  "method": "METHOD_IN_CAPITALS",
   "statusCode": 200
 }
 ```

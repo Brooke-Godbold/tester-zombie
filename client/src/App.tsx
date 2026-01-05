@@ -1,7 +1,10 @@
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { AppContainer, AppHeader } from "./App.styles";
-import { ResponseListPage } from "./page/ResponseListPage.page";
+import { AppContainer, AppPageContainer } from "./App.styles";
+import { ResponseListPage } from "./page/response-list/ResponseListPage.page";
 import GlobalStyles from "./styles/GlobalStyles";
+import { RequestListPage } from "./page/request-list/RequestListPage.page";
+import { AppHeader } from "./component/app-header/AppHeader.component";
 
 export default function App() {
     return (
@@ -24,8 +27,16 @@ export default function App() {
                 }}
             />
             <AppContainer>
-                <AppHeader>Tester Zombie</AppHeader>
-                <ResponseListPage />
+                <BrowserRouter>
+                    <AppHeader />
+                    <AppPageContainer>
+                        <Routes>
+                            <Route path="responses" element={<ResponseListPage />} />
+                            <Route path="requests" element={<RequestListPage />} />
+                            <Route path="*" element={<Navigate replace to="responses" />} />
+                        </Routes>
+                    </AppPageContainer>
+                </BrowserRouter>
             </AppContainer>
         </>
     );

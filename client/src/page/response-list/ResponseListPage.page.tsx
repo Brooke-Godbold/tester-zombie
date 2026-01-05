@@ -1,16 +1,16 @@
 import { ResponseItem } from "@common/types/responseItem.types";
 import { useEffect, useState } from "react";
-import { getAllResponses } from "../api/getAllResponses";
-import { ResponseList } from "../component/response-list/ResponseList.component";
-import { ResponseData } from "../component/response-data/ResponseData.component";
+import { getAllResponses } from "../../api/getAllResponses";
+import { ResponsesList } from "../../component/item-list/ResponseList.component";
+import { ResponseData } from "../../component/response-data/ResponseData.component";
 import { ResponseListPageParent, ResponsePageContainer } from "./ResponseListPage.styles";
-import { LoadingOverlay } from "../component/loading-overlay/LoadingOverlay.component";
+import { LoadingOverlay } from "../../component/loading-overlay/LoadingOverlay.component";
 import toast from "react-hot-toast";
-import Notification from "../component/notification/Notification.component";
+import Notification from "../../component/notification/Notification.component";
 
 export function ResponseListPage() {
     const [responses, setResponses] = useState<ResponseItem[]>([]);
-    const [loading, setLoading] = useState<Boolean>(true);
+    const [loading, setLoading] = useState<Boolean>(false);
     const [endpoint, setEndpoint] = useState<string | null>(null);
 
     useEffect(() => {
@@ -39,7 +39,7 @@ export function ResponseListPage() {
                 (
                     responses && (
                         <ResponsePageContainer>
-                            <ResponseList responses={responses} setEndpoint={setEndpoint} currentEndpoint={endpoint ?? ""} />
+                            <ResponsesList responses={responses} setEndpoint={setEndpoint} currentEndpoint={endpoint ?? ""} />
                             <ResponseData responseItem={responses.find(res => res.config.endpoint == endpoint)} setResponses={setResponses} />
                         </ResponsePageContainer>
                     )
