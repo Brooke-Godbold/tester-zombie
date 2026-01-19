@@ -1,14 +1,10 @@
-import { RuntimeResponse } from "@common/types/runtimeResponse.types";
+import { ResponseItem } from "@common/types/responseItem.types";
 
-export const ResponseRegistry = new Map<string, RuntimeResponse>();
+export const ResponseRegistry = new Map<string, ResponseItem>();
 
 export function updateResponseRegistry(
     endpoint: string,
-    statusCode: number,
-    body: Record<string, any>
+    response: ResponseItem,
 ) {
-    ResponseRegistry.set(endpoint, {
-        statusCode: statusCode,
-        body: body
-    });
+    ResponseRegistry.set(endpoint, response);
 }

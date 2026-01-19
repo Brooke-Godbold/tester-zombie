@@ -5,6 +5,7 @@ import { Express } from "express";
 import { ResponseConfig } from "@common/types/responseConfig.types";
 import { updateResponseRegistry } from "../store/responseRegistry";
 import { registerEndpoint } from "../api/registerEndpoint";
+import { ResponseItem } from "@common/types/responseItem.types";
 
 export async function tryRegisterEndpoint(
     app: Express,
@@ -32,10 +33,13 @@ export async function tryRegisterEndpoint(
         await fs.readFile(responsePath, "utf-8")
     );
 
+    const response: ResponseItem = {
+        config: config,
+        response: responseJson
+    }
     updateResponseRegistry(
         config.endpoint,
-        config.statusCode,
-        responseJson
+        response
     );
 
     registerEndpoint(app, config, fullEndpoint);

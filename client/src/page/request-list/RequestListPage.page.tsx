@@ -7,11 +7,13 @@ import { RequestLogItem } from "@common/types/requestLogItem.types";
 import { getAllRequestLogs } from "../../api/getRequestLogs";
 import { RequestsList } from "../../component/item-list/RequestsList.component";
 import { RequestData } from "../../component/request-data/RequestData.component";
+import { useLoad } from "../../hooks/useLoad";
 
 export function RequestListPage() {
     const [requests, setRequests] = useState<RequestLogItem[]>([]);
     const [currentLog, setCurrentLog] = useState<number>(0);
-    const [loading, setLoading] = useState<Boolean>(false);
+    
+    const { loading, setLoading } = useLoad();
 
     useEffect(() => {
         getRequestLogs();
@@ -32,10 +34,11 @@ export function RequestListPage() {
     }
 
     return (
-        <RequestListPageParent>
+        <>
             {
-                loading ?
-                <LoadingOverlay /> :
+                loading && <LoadingOverlay />
+            }
+            <RequestListPageParent>
                 <RequestPageContainer>
                     <RequestsList
                         requestLogs={requests}
@@ -45,7 +48,7 @@ export function RequestListPage() {
                     />
                     <RequestData requestLog={requests.find(log => log.timestamp === currentLog) || null} />
                 </RequestPageContainer>
-            }
-        </RequestListPageParent>
+            </RequestListPageParent>
+        </>
     );
 }

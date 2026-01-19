@@ -17,6 +17,6 @@ function endpointHandler(config: ResponseConfig, res: Response) {
         return;
     }
 
-    res.statusCode = runtimeResponse.statusCode;
-    res.json(runtimeResponse.body);
+    res.statusCode = runtimeResponse.config.statusCode;
+    res.json(runtimeResponse.response);
 }

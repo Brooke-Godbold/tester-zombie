@@ -44,7 +44,7 @@ type ButtonProps = {
     $isActive: boolean;
 }
 
-export const AppOptionButton = styled(NavLink)<ButtonProps>`
+export const AppOptionLink = styled(NavLink)<ButtonProps>`
     flex: 1;
 
     padding: 1.2rem;

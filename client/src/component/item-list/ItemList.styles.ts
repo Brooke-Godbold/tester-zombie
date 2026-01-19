@@ -12,7 +12,8 @@ export const ItemListPanel = styled.div`
 
     display: flex;
     flex-direction: column;
-`
+    gap: 2.4rem;
+`;
 
 export const ItemListHeader = styled.h2`
     width: 100%;
@@ -101,6 +102,11 @@ export const ItemListEmpty = styled.div`
 `
 
 export const RefreshListButton = styled.button`
+    display:  flex;
+    gap: 4.8rem;
+    justify-content: center;
+    align-items: center;
+
     font-family: "HauntedHillRegular", sans-serif;
     font-size: 3.2rem;
     letter-spacing: 2px;

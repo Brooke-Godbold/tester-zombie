@@ -22,8 +22,8 @@ const responseDir = path.join(__dirname, "response");
 
 loadResponses(app, responseDir)
 .then(() => {
-    getResponseList(app, responseDir);
-    updateResponse(app, responseDir);
+    getResponseList(app);
+    updateResponse(app);
 
     app.use("/api", requestRoutes);
 

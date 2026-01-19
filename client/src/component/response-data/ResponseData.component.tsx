@@ -4,22 +4,26 @@ import { updateResponse } from "../../api/updateResponse";
 import { useEffect, useState } from "react";
 import { StatusCodeOptions } from "../status-code-options/StatusCodeOptions.component";
 import { getAllResponses } from "../../api/getAllResponses";
-import { ResponseDataContainer, ResponseDataHeader, ResponseDataInputContainer, ResponseDataPanel, ResponseDataSubmitButton, ResponseDataSubmitContainer } from "./ResponseData.styles";
+import { ResponseDataContainer, ResponseDataHeader, ResponseDataHeaderText, ResponseDataInputContainer, ResponseDataManagementContainer, ResponseDataPanel, ResponseDataSubmitButton, ResponseDataSubmitContainer } from "./ResponseData.styles";
 import toast from "react-hot-toast";
 import Notification from "../notification/Notification.component";
 import { LoadingOverlay } from "../loading-overlay/LoadingOverlay.component";
 import { ItemDataNoData } from "../item-data/ItemDataNoData.component";
 import { JsonContent } from "../json-content/JsonContent.component";
+import { useResponse } from "../../hooks/useResponse";
+import { ResponseDataManagement } from "../response-data-management/ResponseDataManagement.component";
 
 type ResponseDataProps = {
     responseItem: ResponseItem | undefined;
-    setResponses: (responses: ResponseItem[]) => void;
+    getResponsesList: () => Promise<void>;
 }
 
-export function ResponseData({ responseItem, setResponses }: ResponseDataProps) {
+export function ResponseData({ responseItem, getResponsesList }: ResponseDataProps) {
     const [updateStatusCode, setUpdateStatusCode] = useState<number>(200);
     const [updateValue, setUpdateValue] = useState<string>("");
     const [loading, setLoading] = useState<Boolean>(false);
+
+    const { setResponses } = useResponse();
 
     useEffect(() => {
         if (!responseItem) return;
@@ -36,10 +40,10 @@ export function ResponseData({ responseItem, setResponses }: ResponseDataProps) 
         toast.dismiss();
 
         try {
+            responseItem.response = JSON.parse(updateValue);
             const responseUpdate: ResponseUpdate = {
-                folderName: responseItem.folderName,
-                statusCode: updateStatusCode,
-                response: JSON.parse(updateValue)
+                endpoint: responseItem.config.endpoint,
+                response: responseItem
             };
             await updateResponse(responseUpdate);
 
@@ -71,7 +75,12 @@ export function ResponseData({ responseItem, setResponses }: ResponseDataProps) 
                 {
                     responseItem ? 
                     <ResponseDataContainer>
-                        <ResponseDataHeader>{responseItem.config.endpoint}</ResponseDataHeader>
+                        <ResponseDataHeader>
+                            <ResponseDataHeaderText>{responseItem.config.endpoint}</ResponseDataHeaderText>
+                            <ResponseDataManagementContainer>
+                                <ResponseDataManagement getResponsesList={getResponsesList} responseItem={responseItem} />
+                            </ResponseDataManagementContainer>
+                        </ResponseDataHeader>
                         <StatusCodeOptions
                             setUpdatedStatusCode={setUpdateStatusCode}
                             currentStatusCode={updateStatusCode}

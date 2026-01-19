@@ -22,7 +22,8 @@ export function JsonContent({ readonly, value, updateValue, caret }: JsonContent
             height="100%"
             width="100%"
             readOnly={readonly}
-            minHeight="100%"
+            minHeight="30rem"
+            maxHeight="30rem"
             style={{ height: "100%" }}
             extensions={[json()]}
             theme={darculaInit({

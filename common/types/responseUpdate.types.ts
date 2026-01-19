@@ -1,5 +1,6 @@
+import { ResponseItem } from "./responseItem.types";
+
 export interface ResponseUpdate {
-    folderName: string,
-    statusCode: number,
-    response: Record<string, any>
+    endpoint: string,
+    response: ResponseItem,
 }

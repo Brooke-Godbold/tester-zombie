@@ -1,4 +1,3 @@
-import { ResponseItem } from "@common/types/responseItem.types";
 import { useEffect, useState } from "react";
 import { getAllResponses } from "../../api/getAllResponses";
 import { ResponsesList } from "../../component/item-list/ResponseList.component";
@@ -7,44 +6,65 @@ import { ResponseListPageParent, ResponsePageContainer } from "./ResponseListPag
 import { LoadingOverlay } from "../../component/loading-overlay/LoadingOverlay.component";
 import toast from "react-hot-toast";
 import Notification from "../../component/notification/Notification.component";
+import { useResponse } from "../../hooks/useResponse";
+import { AddEndpoint } from "../../component/add-endpoint/AddEndpoint.component";
+import { useLoad } from "../../hooks/useLoad";
 
 export function ResponseListPage() {
-    const [responses, setResponses] = useState<ResponseItem[]>([]);
-    const [loading, setLoading] = useState<Boolean>(false);
     const [endpoint, setEndpoint] = useState<string | null>(null);
+    const [addEndpoint, setAddEndpoint] = useState<Boolean>(false);
+
+    const { loading, setLoading } = useLoad();
+    const { responses, setResponses } = useResponse();
 
     useEffect(() => {
-        async function getResponsesList() {
-            setLoading(true);
-            try {
-                const responsesList = await getAllResponses();
-                setResponses(responsesList);
-            }
-            catch (err) {
-                toast.error(() => <Notification text={`Unable to Retrieve Responses:\n${err}`} isError={true} />);
-            }
-            finally {
-                setLoading(false);
-            }
-        }
-
         getResponsesList();
     }, [])
 
+    useEffect(() => {
+        if (!endpoint) return;
+
+        setAddEndpoint(false);
+    }, [endpoint])
+
+    async function getResponsesList() {
+        setLoading(true);
+        try {
+            const responsesList = await getAllResponses();
+            setResponses(responsesList);
+        }
+        catch (err) {
+            toast.error(() => <Notification text={`Unable to Retrieve Responses:\n${err}`} isError={true} />);
+        }
+        finally {
+            setLoading(false);
+        }
+    }
+
     return (
-        <ResponseListPageParent>
+        <>
             {
-                loading ?
-                <LoadingOverlay /> :
-                (
+                loading && <LoadingOverlay />
+            }
+            <ResponseListPageParent>
+                {
                     responses && (
                         <ResponsePageContainer>
-                            <ResponsesList responses={responses} setEndpoint={setEndpoint} currentEndpoint={endpoint ?? ""} />
-                            <ResponseData responseItem={responses.find(res => res.config.endpoint == endpoint)} setResponses={setResponses} />
+                            <ResponsesList
+                                setEndpoint={setEndpoint}
+                                currentEndpoint={endpoint ?? ""}
+                                getResponsesList={getResponsesList}
+                                setAddEndpoint={setAddEndpoint}
+                            />
+                            {
+                                addEndpoint ?
+                                <AddEndpoint setEndpoint={setEndpoint} /> :
+                                <ResponseData responseItem={responses.find(res => res.config.endpoint == endpoint)} getResponsesList={getResponsesList} />
+                            }
                         </ResponsePageContainer>
                     )
-                )
-            }
-        </ResponseListPageParent>
+                }
+            </ResponseListPageParent>
+        </>
     )
 }

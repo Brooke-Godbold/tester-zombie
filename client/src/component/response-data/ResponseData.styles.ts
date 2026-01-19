@@ -16,7 +16,12 @@ export const ResponseDataContainer = styled.div`
     width: 100%;
     height: 100%;
 
-    padding: 2.4rem;
+    padding: 4.8rem 15rem;
+
+    min-height: 0;
+    overflow-y: auto;
+
+    gap: 3.2rem;
 `
 
 export const ResponseDataInputContainer = styled.div`
@@ -81,13 +86,31 @@ export const ResponseDataSubmitButton = styled.button`
     }
 `
 
-export const ResponseDataHeader = styled.h2`
+export const ResponseDataHeader = styled.div`
+    width: 100%;
     flex: 2;
 
-    width: 100%;
-    text-align: center;
+    display: flex;
+
+    padding: 0 2.4rem;
+`
+
+export const ResponseDataHeaderText = styled.h2`
+    flex: 1;
+
+    height: 100%;
+    text-align: start;
 
     padding-top: 1.2rem;
 
     font-size: 4.8rem;
+`
+
+export const ResponseDataManagementContainer = styled.div`
+    flex: 1;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
