@@ -3,7 +3,6 @@ import { uploadResponseItems } from "../../helper/uploadResponseItems";
 import { useRef } from "react";
 import toast from "react-hot-toast";
 import Notification from "../notification/Notification.component";
-import { ImFolderUpload } from "react-icons/im";
 import { AppOptionButton } from "../response-data-management/ResponseDataManagement.styles";
 
 type LoadResponsesButtonProps = {
@@ -39,7 +38,6 @@ export function LoadResponsesButton({ onLoad, children }: LoadResponsesButtonPro
         <>
             <AppOptionButton onClick={openFileDialog}>
                 { children }
-                <ImFolderUpload />
             </AppOptionButton>
             <input
                 ref={inputRef}

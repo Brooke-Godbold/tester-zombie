@@ -5,7 +5,15 @@ import { tryRegisterEndpoint } from "./tryRegisterEndpoint";
 import { tryRunGenerator } from "./tryRunGenerator";
 
 export async function loadResponses(app: Express, baseDir: string) {
-    await walkDirectory(app, baseDir);
+    try {
+        await walkDirectory(app, baseDir);
+    } catch (err: any) {
+        if (err.code !== "ENOENT") {
+            throw err;
+        }
+
+        console.log("No responses directory found, skipping pre-built responses setup")
+    }
 }
 
 async function walkDirectory(app: Express, dir: string) {

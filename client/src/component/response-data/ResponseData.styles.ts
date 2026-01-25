@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ResponseDataPanel = styled.div`
-    flex: 2;
+    width: 75%;
     height: 100%;
 
     border-style: dashed;
@@ -32,7 +32,6 @@ export const ResponseDataInputContainer = styled.div`
 
     display: flex;
     flex-direction: column;
-    min-height: 0;
 `;
 
 export const ResponseDataInput = styled.textarea`
@@ -91,12 +90,13 @@ export const ResponseDataHeader = styled.div`
     flex: 2;
 
     display: flex;
+    align-items: center;
 
     padding: 0 2.4rem;
 `
 
 export const ResponseDataHeaderText = styled.h2`
-    flex: 1;
+    width: 50%;
 
     height: 100%;
     text-align: start;
@@ -107,7 +107,16 @@ export const ResponseDataHeaderText = styled.h2`
 `
 
 export const ResponseDataManagementContainer = styled.div`
-    flex: 1;
+    width: 33%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+export const DeleteEndpointContainer = styled.div`
+    width: 17%;
     height: 100%;
 
     display: flex;

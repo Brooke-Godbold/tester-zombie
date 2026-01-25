@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const RequestDataPanel = styled.div`
-    flex: 2;
+    width: 75%;
     height: 100%;
 
     border-style: dashed;
@@ -51,6 +51,25 @@ export const RequestDataFieldValue = styled.p`
     align-items: center;
 
     font-size: 2rem;
+
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0.75rem;
+
+    scrollbar-color: transparent;
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 3px;
+    }
 `
 
 export const RequestDataBodyContainer = styled.div`

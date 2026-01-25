@@ -8,3 +8,9 @@ export function updateResponseRegistry(
 ) {
     ResponseRegistry.set(endpoint, response);
 }
+
+export function deleteFromResponseRegistry(
+    endpoint: string,
+) {
+    ResponseRegistry.delete(endpoint)
+}

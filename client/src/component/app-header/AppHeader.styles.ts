@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const AppHeaderContainer = styled.div`
     width: 100%;
-    flex: 1;
+    height: 20%;
 
     display: flex;
     flex-direction: column;
@@ -14,16 +14,16 @@ export const AppHeaderContainer = styled.div`
     border-radius: var(--border-radius-sm);
     border-color: var(--color-brand-400);
 
-    padding: 2.4rem;
+    padding: 1.2rem;
 `
 
 export const AppHeaderText = styled.h1`
     width: 100%;
-    flex: 1;
+    height: 50%;
 
     text-align: center;
 
-    font-size: 6.4rem;
+    font-size: 4.2rem;
     letter-spacing: 5px;
 
     border-bottom: 2px dashed var(--color-brand-400);
@@ -31,11 +31,13 @@ export const AppHeaderText = styled.h1`
 
 export const AppOptions = styled.div`
     width: 100%;
-    flex: 1;
+    height: 50%;
 
     display: flex;
+    align-items: center;
+    justify-content: center;
 
-    padding: 3.2rem;
+    padding: 0.75rem;
     padding-bottom: 0;
     gap: 3.2rem;
 `
@@ -47,23 +49,23 @@ type ButtonProps = {
 export const AppOptionLink = styled(NavLink)<ButtonProps>`
     flex: 1;
 
-    padding: 1.2rem;
+    padding: 0.75rem;
 
     font-family: "HauntedHillRegular", sans-serif;
-    font-size: 3.2rem;
+    font-size: 2.8rem;
     letter-spacing: 2px;
 
     text-align: center;
     text-decoration: none;
 
-    border-style: none;
     border-radius: var(--border-radius-sm);
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
 
-    background-color: ${props => props.$isActive ? "var(--color-brand-300)" : "transparent"};
-    color: ${props => props.$isActive ? "var(--color-brand-900)" : "var(--color-brand-300)"};
+    border-bottom-color: ${props => props.$isActive ? "var(--color-brand-300)" : "transparent"};
+    color: var(--color-brand-300);
 
     &:hover {
-        background-color: var(--color-brand-300);
-        color: var(--color-brand-900);
+        border-bottom-color: var(--color-brand-300);
     }
 `

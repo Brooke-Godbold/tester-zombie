@@ -14,7 +14,7 @@ export const AppContainer = styled.div`
 
 export const AppPageContainer = styled.div`
     width: 100%;
-    flex: 5;
+    height: 80%;
 
     display: flex;
     flex-direction: column;

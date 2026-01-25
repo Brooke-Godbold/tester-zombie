@@ -174,7 +174,7 @@ export function AddEndpoint({ setEndpoint }: AddEndpointProps) {
                         />
                     </AddEndpointResponseContainer>
                     <ResponseDataSubmitContainer>
-                        <ResponseDataSubmitButton onClick={handleSubmit}>Update</ResponseDataSubmitButton>
+                        <ResponseDataSubmitButton onClick={handleSubmit}>Add Endpoint</ResponseDataSubmitButton>
                     </ResponseDataSubmitContainer>
                 </AddEndpointInner>
             </AddEndpointContainer>

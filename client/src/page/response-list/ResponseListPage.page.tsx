@@ -59,7 +59,11 @@ export function ResponseListPage() {
                             {
                                 addEndpoint ?
                                 <AddEndpoint setEndpoint={setEndpoint} /> :
-                                <ResponseData responseItem={responses.find(res => res.config.endpoint == endpoint)} getResponsesList={getResponsesList} />
+                                <ResponseData
+                                    responseItem={responses.find(res => res.config.endpoint == endpoint)}
+                                    getResponsesList={getResponsesList}
+                                    setEndpoint={setEndpoint}
+                                />
                             }
                         </ResponsePageContainer>
                     )

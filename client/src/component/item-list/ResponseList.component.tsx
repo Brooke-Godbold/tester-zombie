@@ -26,7 +26,6 @@ export function ResponsesList({ setEndpoint, currentEndpoint, getResponsesList, 
             <ResponseListOptions>
                 <ResponseListNewEndpointContainer>
                     <AppOptionButton onClick={handleAddEndpoint}>
-                        <p>Add Endpoint</p>
                         <BiSolidAddToQueue />
                     </AppOptionButton>
                 </ResponseListNewEndpointContainer>

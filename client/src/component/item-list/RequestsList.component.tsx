@@ -1,7 +1,7 @@
 import { readableDate } from "../../utils/dateUtils";
 import { ItemListButton, ItemListContainer, ItemListEmpty, ItemListHeader, ItemListItem, ItemListPanel, RefreshListButton } from "./ItemList.styles";
 import { RequestLogItem } from "@common/types/requestLogItem.types";
-import { RequestItemContainer, RequestItemDate, RequestItemPath } from "./RequestsList.styles";
+import { RefreshButtonContainer, RequestItemContainer, RequestItemDate, RequestItemPath } from "./RequestsList.styles";
 import { MdOutlineRefresh } from "react-icons/md";
 
 type RequestListProps = {
@@ -18,19 +18,24 @@ export function RequestsList({ requestLogs, setCurrentLog, currentLog, refreshRe
         setCurrentLog(0);
     }
 
+    const sortedLogs = [...requestLogs].sort(
+    (a, b) => b.timestamp - a.timestamp
+    );
+
     return (
         <ItemListPanel>
             <ItemListHeader>Request Logs</ItemListHeader>
-            <RefreshListButton onClick={handleRefresh}>
-                <p>Refresh Requests</p>
-                <MdOutlineRefresh />
-            </RefreshListButton>
+            <RefreshButtonContainer>
+                <RefreshListButton onClick={handleRefresh}>
+                    <MdOutlineRefresh />
+                </RefreshListButton>
+            </RefreshButtonContainer>
             {
                 requestLogs.length === 0 ?
                 <ItemListEmpty>No Request Logs</ItemListEmpty> :
                 <ItemListContainer>
                     {
-                        requestLogs.map(log => 
+                        sortedLogs.map(log => 
                             <ItemListItem key={log.timestamp}>
                                 <ItemListButton
                                     $isActive={currentLog === log.timestamp}

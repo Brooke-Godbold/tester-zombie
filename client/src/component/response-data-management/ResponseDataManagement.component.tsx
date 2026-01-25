@@ -3,6 +3,7 @@ import { AppOptionButton, ResponseDataManagementContainer } from "./ResponseData
 import { downloadResponseItems } from "../../helper/downloadResponseItems";
 import { ResponseItemsRecord } from "@common/types/responseItemsRecord.types";
 import { ImFolderDownload } from "react-icons/im";
+import { ImFolderUpload } from "react-icons/im";
 import { LoadResponsesButton } from "../load-responses-button/LoadResponsesButton.component";
 import toast from "react-hot-toast";
 import Notification from "../notification/Notification.component";
@@ -45,11 +46,10 @@ export function ResponseDataManagement({ getResponsesList, responseItem }: Respo
     return (
         <ResponseDataManagementContainer>
             <AppOptionButton onClick={handleSaveResponses}>
-                <p>{ responseItem ? "Save Response" : "Save Responses"}</p>
                 <ImFolderDownload />
             </AppOptionButton>
             <LoadResponsesButton onLoad={handleLoadResponses}>
-                <p>{ responseItem ? "Load Response" : "Load Responses"}</p>
+                <ImFolderUpload />
             </LoadResponsesButton>
         </ResponseDataManagementContainer>
     )

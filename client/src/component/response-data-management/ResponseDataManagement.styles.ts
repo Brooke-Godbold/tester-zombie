@@ -4,13 +4,12 @@ export const ResponseDataManagementContainer = styled.div`
     width: 100%;
 
     display: flex;
-
     gap: 2.4rem;
+    align-items: center;
+    justify-content: space-around;
 `;
 
 export const AppOptionButton = styled.button`
-    flex: 1;
-
     padding: 1.2rem;
 
     display: flex;
@@ -19,7 +18,7 @@ export const AppOptionButton = styled.button`
     align-items: center;
 
     font-family: "HauntedHillRegular", sans-serif;
-    font-size: 1.6rem;
+    font-size: 2.4rem;
     letter-spacing: 2px;
 
     text-align: center;
@@ -28,9 +27,12 @@ export const AppOptionButton = styled.button`
     background-color: transparent;
     color: var(--color-brand-300);
 
-    border-radius: var(--border-radius-sm);
     border-color: var(--color-brand-400);
     border-style: dashed;
+
+    height: 6.4rem;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
 
     &:hover {
         background-color: var(--color-brand-800);

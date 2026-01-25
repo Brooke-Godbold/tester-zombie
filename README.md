@@ -6,7 +6,7 @@ A Mock Server App which can generate responses on the Server, and can be updated
 
 ## 🛠 Installation
 
-To install, run the following
+To install, run the following (must be run at the root, and within both /server and /client)
 
 ```bash
 npm install
@@ -33,11 +33,19 @@ PORT=3000
 BASE_API=COMMON_PREFIX_FOR_ALL_API
 ```
 
+The common prefix is appended to all requests, e.g. with PORT=3000 and BASE_API=/api, priming a response at /health can be reached at <http://localhost:3000/api/health>
+
 ---
 
 ## 🛠 Usage -> Back-End
 
+Prebuild Responses can be provided, which will be loaded in at the initial build of the App.
+
 Responses must be contained within the Response folder in the Server. Each endpoint must have a Config file, and a Response file
+
+```bash
+src/server/response/NAME
+```
 
 ```bash
 NAME.config.json
@@ -72,8 +80,6 @@ The Front-End will display a list of all endpoints contained within the Response
 
 These responses, along with status codes, can be edited in the Front-End, and updated as desired
 
-Changes to the responses will persist as long as the 'npm run build' command is not run
-
-If the build command is run again, the responses will be overwritten with the base server responses once more
+Changes to the responses will not persist once the App is shut down. Responses may be saved by using the Download button, which will be stored as a JSON file of all of the responses within the current session. They may also be loaded from a JSON file, which will overwrite all responses in the current session
 
 ---
